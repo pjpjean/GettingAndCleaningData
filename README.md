@@ -1,4 +1,46 @@
-Getting and Cleaning Data Project
-=================================
+# Getting and Cleaning Data Project # 
 
- Github repo with the code for performing analysis on the clean and tidy Samsung data.
+## Introduction ##
+The aim of this project is to create a tidy data set with summaries of some of the variables of Human Activity Recognition Using Smartphones dataset.
+This dataset is about a series of measurements taken "with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist.". Each person (subject) and each activity were given an id, 1-30 and 1-6, respectively.
+
+## Script ##
+
+The script 'run_Analysis.R' starts checking if all the required files exist. It makes use of a helper function that searches for the file first in working directory, then in subdirecories according to the dataset ZIP internal directory structure.
+
+The required files are:
+
+- 'features.txt': List of all features.
+- 'activity_labels.txt': Links the class labels with their activity name.
+- 'train/suject_train.txt': Each row identifies the subject who performed the activity.
+- 'train/X_train.txt': Training set.
+- 'train/y_train.txt': Training labels.
+- 'test/suject_test.txt': Each row identifies the subject who performed the activity.
+- 'test/X_test.txt': Test set.
+- 'test/y_test.txt': Test labels.
+
+From 'features.txt', we get the names of our output variables. From 'activity_labels.txt' we get the names of activities, to appropriately label the data set with descriptive activity names. From the other files, originally split in train and test sets, we get the observed measurements.
+
+After reading the 8 files, we merge the training and the test sets to create one data set, extract only the measurements on the mean and standard deviation for each measurement, replace activity id with activity names and create a tidy data set with the average of each variable for each activity and each subject. 
+
+At the end, we output a file named 'har_tidy.txt' in working directory.
+
+## Usage ##
+```
+> source('~/GitHub/GettingAndCleaningData/run_Analisys.R')
+checking required files...
+reading 'features.txt'...
+reading 'activity_labels.txt'...
+reading 'subject_train.txt'...
+reading 'X_train.txt' (it may take a while)...
+reading 'y_train.txt'...
+reading 'subject_test.txt'...
+reading 'X_test.txt' (it may take a while)...
+reading 'y_test.txt'...
+labelling with descriptive activity names...
+creating full dataset...
+extracting mean and std variables...
+averaging...
+writing output file 'har_tidy.txt'...
+done!
+```
