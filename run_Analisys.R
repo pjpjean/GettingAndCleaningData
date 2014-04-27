@@ -1,4 +1,12 @@
 
+# --------------------------------------------------------------------------
+# path.UCI.HAR.Dataset: Helper function.
+# The original dataset is is a zip file with a internal directory structure.
+# This function searches for the file first in working directory, then in 
+# subdirecories according to the dataset directory structure.
+#
+# Returns file's full path or an empty string, if it is not found.
+# --------------------------------------------------------------------------
 path.UCI.HAR.Dataset <- function(filename) {
   homeFolder <- getwd()
   
@@ -25,6 +33,10 @@ path.UCI.HAR.Dataset <- function(filename) {
   return("")
 }
 
+# Start of the cleaning and tidying process.
+# --------------------------------------------------------------------------
+
+# Check if all required files exist
 message("checking required files...")
 files.to.read <- c("features.txt", "activity_labels.txt",
                    "subject_train.txt", "X_train.txt", "y_train.txt",
